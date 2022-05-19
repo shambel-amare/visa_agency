@@ -1,0 +1,1 @@
+web: gunicorn visa_agency.wsgi --log-file -
