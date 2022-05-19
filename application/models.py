@@ -34,7 +34,7 @@ class Application(models.Model):
     passport_number = models.CharField(max_length=20, blank=True, null=True)
     passport_photo = models.ImageField(
         blank=True, null=True, upload_to="images/")
-
+    documents = models.FileField(blank=True, null=True, upload_to="documents/")
     created_at = models.DateTimeField(
         auto_now_add=True)
 
