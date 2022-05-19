@@ -1,0 +1,83 @@
+{% extends 'application/mainhead.html'%} {% block content%}
+
+<div style ="flex-direction:column; margin-top:2rem; "class="container align-items-center d-flex ">
+{%if request.user.is_superuser%}
+<h1>EDIT APPLICATION</h1>
+
+<div class="container d-flex justify-content-between">
+  <form action="" method="POST" class="d-flex" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <div class="col-12">
+      <label for="inputAddress" class="form-label"
+        >{{form.first_name.label}}</label
+      >
+      <!-- <input type="email"  id="inputEmail4"> -->
+      <div id="inputAddress">{{ form.first_name}}</div>
+
+    <label for="inputEmail4" class="form-label"
+      >{{form.last_name.label}}</label
+    >
+    <!-- <input type="email" class="form-control" id="inputEmail4"> -->
+    <div id="inputEmail4">{{ form.last_name}}</div>
+    <label for="inputAddress" class="form-label"
+      >{{form.email.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.email}}</div>
+    <label for="inputAddress" class="form-label"
+      >{{form.birth_date.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.birth_date}}</div>
+    <label for="inputAddress" class="form-label"
+      >{{form.phone_number.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.phone_number}}</div>
+
+    <label for="inputAddress" class="form-label"
+      >{{form.address.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.address}}</div>
+
+    <label for="inputAddress" class="form-label"
+      >{{form.passport_number.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.passport_number}}</div>
+    <label for="inputAddress" class="form-label"
+      >{{form.application_type.label}}</label
+    >
+    <!-- <input type="email"  id="inputEmail4"> -->
+    <div id="inputAddress">{{ form.application_type}}</div>
+
+    <div>
+      <label for="formFileLg" class="form-label"
+        >{{form.passport_photo.label}}</label
+      >
+      <div id="inputAddress">{{ form.passport_photo}}</div>
+    </div>
+
+    <div style="margin-top: 2rem" class="col-12">
+      <input type="submit" value="Update" />
+    </div>
+    </div>
+    </div>
+
+  </form>
+</div>
+{%elif request.user.is_customer or request.user.is_agent%}
+<h1>You can not Edit your Application!</h1>
+<h2>Please contact your administrator</h2>
+<a
+class="btn align-right btn-link"
+href="{% url 'home'  %}"
+>Contact Admin</a>
+{% endif%}
+<a
+class="btn align-right btn-link"
+href="{% url 'dashboard' %}"
+>Back to Dashboard</a>
+</div>
+{% endblock content%}

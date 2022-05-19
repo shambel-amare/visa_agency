@@ -1,0 +1,38 @@
+{% extends 'application/mainhead.html'%} {% block content%}
+
+<div style="margin-top: 2rem" class="container container-fluid">
+  {%if searched %}
+  <center>
+    <h1>You Searched for {{searched}}</h1>
+    <hr />
+    <h1>{{Applications}}</h1>
+    <table class="table" style="margin-top: 2rem">
+      <td><strong>NAME</strong></td>
+      <td><strong>PHONE</strong></td>
+      <td><strong>EMAIL</strong></td>
+
+      {% for item in applications%}
+      <tr>
+        <td>{{item}}</td>
+        <td>{{item.phone_number}}</td>
+        <td>{{item.email}}</td>
+        <td><a href="{% url 'edit_application' item.id %}">Edit</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </center>
+  {%else %}
+  <h1>Sorry We couldn't find any search results'</h1>
+  {%endif %}
+  <div style="margin-top: 5rem" class="container container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <a
+        href="{% url 'dashboard' %}"
+        class="d-sm-inline-block btn btn-sm shadow-sm"
+        >All Applications
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content%}

@@ -1,0 +1,34 @@
+{% extends 'main.html'%}
+{% load static%}
+
+{% block content%}
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>How to Apply</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page pt-4">
+      <div class="container">
+        <p>
+          Example inner page template
+        </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{% endblock content%}

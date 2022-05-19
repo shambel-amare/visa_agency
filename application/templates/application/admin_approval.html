@@ -1,0 +1,67 @@
+{% extends 'application/mainhead.html'%} {% block content%}
+
+<div style="margin-top: 2rem" class="container">
+  <center>
+    <h1>Admin Approval page</h1>
+    <h1>All Applications</h1>
+  </center>
+  <a class="btn align-right btn-link" href="{% url 'dashboard' %}"
+    >Back to Dashboard</a
+  >
+  <hr />
+  <div class="container d-flex justify-content-between">
+    <nav id="navbar" class="navbar">
+      <form
+        action="{% url 'search_application' %}"
+        method="POST"
+        class="d-flex"
+      >
+        {% csrf_token %}
+        <input
+          class="form-control me-2"
+          type="search"
+          name="searched"
+          placeholder="Filter By Name..."
+          aria-label="Search"
+        />
+        <button class="btn btn-primary">Filter</button>
+      </form>
+    </nav>
+    <!-- .navbar -->
+  </div>
+  <table
+    class="table table-striped table-hover table-bordered"
+    style="margin-top: 2rem"
+  >
+    <thead>
+      <tr>
+        <th scope="col"><strong>NAME</strong></th>
+        <th scope="col"><strong>PHONE</strong></th>
+        <th scope="col"><strong>EMAIL</strong></th>
+        <th scope="col"><strong>OWNER</strong></th>
+        <th scope="col"><strong>TYPE</strong></th>
+        <th scope="col"><strong>OWNER TYPE</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in applications %}
+      <tr>
+        <td>{{item}}</td>
+        <td>{{item.phone_number}}</td>
+        <td>{{item.email}}</td>
+        <td>
+          {% if item.owner.is_superuser is None %} Admin
+          {%else%}{{item.owner}}{%endif%}
+        </td>
+        <td>{{item.application_type}}</td>
+        <td>
+          {% if item.owner.is_agent%} Is Agent{%elif item.owner.is_customer%} Is
+          Customer {%else%} Is Admin{% endif %}
+        </td>
+        <td><a href="{% url 'edit_application' item.id%}">EDIT</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content%}
